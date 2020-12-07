@@ -271,9 +271,9 @@ class PluginManager{
 
 					$pluginPhpVersions = $description->getCompatiblePhpVersions();
 					$pluginCompatiblePhpVersions = array_filter($pluginPhpVersions, function(string $requiredVersion) : bool{
-						return version_compare(PHP_MAJOR_VERSION . "." . PHP_MINOR_VERSION, $requiredVersion, "<=") and version_compare(PHP_VERSION, $requiredVersion, ">=") and version_compare(PHP_MAJOR_VERSION . "." . (PHP_MINOR_VERSION + 1), $requiredVersion, ">");
+						return version_compare(PHP_VERSION, $requiredVersion, ">=");
 					});
-					if(count($pluginPhpVersions) > 0 and count($pluginCompatiblePhpVersions) < 1){
+					if(count($pluginPhpVersions) > 0 and count($pluginCompatiblePhpVersions) === 0){
 						$this->server->getLogger()->error($this->server->getLanguage()->translateString("pocketmine.plugin.loadError", [
 							$name,
 							$this->server->getLanguage()->translateString("%pocketmine.plugin.incompatiblePhpVersion", [implode(", ", $pluginPhpVersions)])

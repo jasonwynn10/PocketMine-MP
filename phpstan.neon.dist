@@ -21,7 +21,6 @@ parameters:
 		- tests/phpstan/bootstrap.php
 	scanDirectories:
 	    - tests/plugins/TesterPlugin
-	    - plugins
 	scanFiles:
 		- src/pocketmine/PocketMine.php
 		- build/make-release.php

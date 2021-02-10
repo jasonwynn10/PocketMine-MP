@@ -29,7 +29,7 @@ class CompatiblePhpTest extends TestCase{
 
 	/**
 	 * @return string[][]
-	 * @phpstan-return list<array{string}>
+	 * @phpstan-return list<array{string, string}>
 	 */
 	public function incompatiblePhpVersions() : array{
 		return [
@@ -40,14 +40,13 @@ class CompatiblePhpTest extends TestCase{
 			["7.0.0", "5.0.0"],
 			["7.2.0", "7.1.0"],
 			["7.2.0", "7.3.0"],
-			["7.1.4", "7.1.3"],
-			["7.0.0", "5.0.0"]
+			["7.1.4", "7.1.3"]
 		];
 	}
 
 	/**
 	 * @return string[][]
-	 * @phpstan-return list<array{string}>
+	 * @phpstan-return list<array{string, string}>
 	 */
 	public function compatiblePhpVersions() : array{
 		return [

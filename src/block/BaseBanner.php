@@ -49,6 +49,8 @@ abstract class BaseBanner extends Transparent{
 	 */
 	protected array $patterns = [];
 
+	private bool $illagerPattern = false;
+
 	public function __construct(BlockIdentifier $idInfo, string $name, BlockBreakInfo $breakInfo){
 		parent::__construct($idInfo, $name, $breakInfo);
 		$this->baseColor = DyeColor::BLACK();
@@ -60,6 +62,7 @@ abstract class BaseBanner extends Transparent{
 		if($tile instanceof TileBanner){
 			$this->baseColor = $tile->getBaseColor();
 			$this->setPatterns($tile->getPatterns());
+			$this->illagerPattern = $tile->isIllagerPattern();
 		}
 	}
 
@@ -69,6 +72,7 @@ abstract class BaseBanner extends Transparent{
 		assert($tile instanceof TileBanner);
 		$tile->setBaseColor($this->baseColor);
 		$tile->setPatterns($this->patterns);
+		$tile->setIllagerPattern($this->illagerPattern);
 	}
 
 	public function isSolid() : bool{
@@ -103,6 +107,14 @@ abstract class BaseBanner extends Transparent{
 		}
 		$this->patterns = $checked;
 		return $this;
+	}
+
+	public function isIllagerPattern() : bool{
+		return $this->illagerPattern;
+	}
+
+	public function setIllagerPattern(bool $illagerPattern) : void{
+		$this->illagerPattern = $illagerPattern;
 	}
 
 	/**

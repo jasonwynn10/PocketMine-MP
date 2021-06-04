@@ -97,9 +97,8 @@ class Banner extends ItemBlockWallOrFloor{
 		return $this->illagerPattern;
 	}
 
-	public function setIllagerPattern(bool $illagerPattern) : self{
+	public function setIllagerPattern(bool $illagerPattern) : void{
 		$this->illagerPattern = $illagerPattern;
-		return $this;
 	}
 
 	public function getFuelTime() : int{
@@ -125,7 +124,7 @@ class Banner extends ItemBlockWallOrFloor{
 				$this->patterns[] = new BannerPatternLayer($patternType, $patternColor);
 			}
 		}
-		$this->illagerPattern = (bool) $tag->getInt(self::TAG_TYPE, 0);
+		$this->illagerPattern = $tag->getInt(self::TAG_TYPE, 0) !== 0;
 	}
 
 	protected function serializeCompoundTag(CompoundTag $tag) : void{
@@ -146,6 +145,6 @@ class Banner extends ItemBlockWallOrFloor{
 		}else{
 			$tag->removeTag(self::TAG_PATTERNS);
 		}
-		$tag->setInt(self::TAG_TYPE, (int) $this->illagerPattern);
+		$tag->setInt(self::TAG_TYPE, $this->illagerPattern ? 1 : 0);
 	}
 }

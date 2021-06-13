@@ -66,7 +66,7 @@ class Banner extends ItemBlockWallOrFloor{
 	}
 
 	public function getMeta() : int{
-		return DyeColorIdMap::getInstance()->toInvertedId($this->color);
+		return $this->illagerPattern ? 15 : DyeColorIdMap::getInstance()->toInvertedId($this->color);
 	}
 
 	public function getMaxStackSize() : int{
@@ -99,7 +99,6 @@ class Banner extends ItemBlockWallOrFloor{
 
 	public function setIllagerPattern(bool $illagerPattern) : self{
 		$this->illagerPattern = $illagerPattern;
-		$this->color = DyeColor::WHITE(); // meta 15 matches vanilla
 		return $this;
 	}
 
